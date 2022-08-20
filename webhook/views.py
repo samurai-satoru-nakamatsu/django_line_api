@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.http import HttpResponse, HttpResponseForbidden
 from django.views.decorators.csrf import csrf_exempt
 from linebot import LineBotApi, WebhookHandler
@@ -5,9 +6,9 @@ from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, TextMessage, TextSendMessage
 
 # YOUR_CHANNEL_ACCESS_TOKEN
-line_bot_api = LineBotApi('jLx15duli4nWB1v1R1Vg+3Z+UmzYffY1mO8deiUov3D4Fij/p5LkaLZS/yN4zFz7KBJ8pKqEjAHsVKeXshAnTKMRrrdoN4E2UDkoWiGy/QXvGzs0RhyjR4fSHcPOF48qqhmMmwwbXyUt47xq63WjSwdB04t89/1O/w1cDnyilFU=')
+line_bot_api = LineBotApi(settings.LINE_CHANNEL_ACCESS_TOKEN)
 # YOUR_CHANNEL_SECRET
-handler = WebhookHandler('39577d3d67d335a2f8fb857827c90922')
+handler = WebhookHandler(settings.LINE_CHANNEL_SECRET)
 
 
 @csrf_exempt
