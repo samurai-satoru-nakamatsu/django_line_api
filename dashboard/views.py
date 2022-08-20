@@ -1,6 +1,6 @@
 from django.views.generic import TemplateView
 
-from webhook.models import WebhookEventObject
+from dashboard.models import Message
 
 
 class HomeView(TemplateView):
@@ -8,5 +8,5 @@ class HomeView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['webhook_event_objects'] = WebhookEventObject.objects.all()
+        context['messages'] = Message.objects.all()
         return context

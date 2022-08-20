@@ -4,25 +4,29 @@
 {% block title %}ホーム{% endblock %}
 
 {% block content %}
-  <h2>メッセージ受信</h2>
-  <div class="table-responsive">
-  <table class="table table-striped table-sm">
-    <thead>
-    <tr>
-      <th>#</th>
-      <th>Raw Data</th>
-      <th>日時</th>
-    </tr>
-    </thead>
-    <tbody>
-    {% for object in webhook_event_objects %}
-      <tr>
-        <td>{{ forloop.counter }}</td>
-        <td><pre>{{ object.raw_data|pretty_json }}</pre></td>
-        <td>{{ object.created_at }}</td>
-      </tr>
-    {% endfor %}
-    </tbody>
-  </table>
+  <div class="pt-3">
+    <h2>メッセージ受信</h2>
+    <div class="table-responsive">
+      <table class="table table-striped table-sm">
+        <thead>
+        <tr>
+          <th>#</th>
+          <th>ユーザー名</th>
+          <th>メッセージ</th>
+          <th>日時</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for object in messages %}
+          <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ object.user_name }}</td>
+            <td>{{ object.message }}</td>
+            <td>{{ object.created_at }}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
   </div>
 {% endblock %}
