@@ -24,7 +24,7 @@ def webhook(request):
     # handle webhook body
     try:
         handler.handle(body, signature)
-        WebhookEventObject.objects.create(raw_data=body)
+        WebhookEventObject.objects.create(raw_data=request.body)
     except InvalidSignatureError:
         print("Invalid signature. Please check your channel access token/channel secret.")
         return HttpResponseForbidden()
