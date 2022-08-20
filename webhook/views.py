@@ -1,4 +1,5 @@
 from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, TextMessage, TextSendMessage
@@ -9,6 +10,7 @@ line_bot_api = LineBotApi('jLx15duli4nWB1v1R1Vg+3Z+UmzYffY1mO8deiUov3D4Fij/p5Lka
 handler = WebhookHandler('39577d3d67d335a2f8fb857827c90922')
 
 
+@csrf_exempt
 def webhook(request):
     # get X-Line-Signature header value
     signature = request.headers['X-Line-Signature']
