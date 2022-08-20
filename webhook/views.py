@@ -6,6 +6,8 @@ from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, TextMessage, TextSendMessage
 
 # YOUR_CHANNEL_ACCESS_TOKEN
+from webhook.models import WebhookEventObject
+
 line_bot_api = LineBotApi(settings.LINE_CHANNEL_ACCESS_TOKEN)
 # YOUR_CHANNEL_SECRET
 handler = WebhookHandler(settings.LINE_CHANNEL_SECRET)
@@ -22,7 +24,7 @@ def webhook(request):
     # handle webhook body
     try:
         handler.handle(body, signature)
-        print(body)
+        WebhookEventObject.objects.create(raw_data=body)
     except InvalidSignatureError:
         print("Invalid signature. Please check your channel access token/channel secret.")
         return HttpResponseForbidden()
