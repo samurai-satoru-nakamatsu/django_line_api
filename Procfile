@@ -1,0 +1,1 @@
+web: python manage.py migrate && gunicorn django_line_api.wsgi
